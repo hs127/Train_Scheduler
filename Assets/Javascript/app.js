@@ -43,4 +43,31 @@ $("#add-train").on("click", function (event) {
         dateAdded: firebase.database.ServerValue.TIMESTAMP
     });
 
-}); 
+});
+
+
+database.ref().on("child_added", function (childSnapshot) {
+    console.log(childSnapshot.val());
+    console.log(childSnapshot.val().trainName);
+
+    var firstTrainNew = moment(childSnapshot.val().nextArrival, "hh:mm").subtract(1, "years");
+    console.log("Frirst train: " + firstTrainNew);
+    var diffTime = moment().diff(moment(firstTrainNew), "minutes");
+    var remainder = diffTime % childSnapshot.val().freq;
+    var minsAway = childSnapshot.val().freq - remainder;
+    var nextArrival = moment().add(minsAway, "minutes");
+    nextArrival = moment(nextArrival).format("hh:mm");
+    console.log("mins away :" + minsAway);
+
+    var row = $("<tr>");
+    row.append("<td>" + childSnapshot.val().trainName + "</td>");
+    row.append("<td>" + childSnapshot.val().destination + "</td>");
+    row.append("<td>" + childSnapshot.val().freq + "</td>");
+    row.append("<td>" + childSnapshot.val().nextArrival + "</td>");
+    row.append("<td>" + childSnapshot.val().minsAway + "</td>");
+    $("#record").append(row);
+
+}, function (errorObject) {
+    console.log("The red failed :" + errorObject.code);
+});
+
