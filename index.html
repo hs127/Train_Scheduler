@@ -1,1 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Train Schedule</title>
+    <link href="https://fonts.googleapis.com/css?family=Crimson+Text|Julius+Sans+One|Oswald" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="Assets/CSS/reset.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="Assets/CSS/style.css">
+
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="jumbotron">
+            <h1 class="text-center">Anytime is Train Time </h1>
+            <h2 class="text-center">Train Schedule </h2>
+        </div>
+        <div class="row">
+
+            <div class="card-header">
+                Today's Train Schedule
+            </div>
+
+            <table class="table">
+
+                <thead>
+                    <tr>
+                        <th scope="col">Train Name</th>
+                        <th scope="col">Destination</th>
+                        <th scope="col">Frequency</th>
+                        <th scope="col">Next Arrival</th>
+                        <th scope="col">Minutes Away</th>
+                    </tr>
+                </thead>
+                <tbody id="record">
+                    <!--Train Records here-->
+                </tbody>
+            </table>
+
+            <!--FOrm-->
+
+            <!-- Sign-up Form (note the various input "types")-->
+            <div class="card">
+                <div class="card-header">
+                    Add Train
+                </div>
+
+                <div class="card-body">
+                    <form role="form">
+                        <div class="form-group">
+                            <label for="name-input">Train Name</label>
+                            <input class="form-control" id="name-input" type="text">
+                        </div>
+                        <div class="form-group">
+                            <label for="role-input">Destination</label>
+                            <input class="form-control" id="destination-input" type="text">
+                        </div>
+                        <div class="form-group">
+                            <label for="date-input">First Train Time (HH:mm-military time)</label>
+                            <input class="form-control" id="time-input" type="date">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="rate-input">Frequency (min)</label>
+                            <input class="form-control" id="freq-input" type="text">
+                        </div>
+
+                        <button class="btn btn-default" id="add-train" type="submit">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- LINKS FOR FIREBASE GO HERE -->
+        <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-database.js"></script>
+
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"
+            integrity="sha256-1hjUhpc44NwiNg8OwMu2QzJXhD8kcj+sJA3aCQZoUjg=" crossorigin="anonymous"></script> -->
+
+        <script src="https://code.jquery.com/jquery.js"></script>
+        <!--TODO: Add SDKs for Firebase products that you want to use
+    https://firebase.google.com/docs/web/setup#available-libraries -->
+        <!-- <script src="https://www.gstatic.com/firebasejs/7.2.1/firebase-analytics.js"></script> -->
+        <script src="Assets/Javascript/app.js"></script>
+</body>
+
+</html>
