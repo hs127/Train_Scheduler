@@ -50,11 +50,23 @@ database.ref().on("child_added", function (childSnapshot) {
     console.log(childSnapshot.val());
     console.log(childSnapshot.val().trainName);
 
+    //help here
+    //we subt one year the first train arrival is always before the current time 
+    //it is using unix time stamp
     var firstTrainNew = moment(childSnapshot.val().nextArrival, "hh:mm").subtract(1, "years");
-    console.log("Frirst train: " + firstTrainNew);
+    console.log("First train: " + firstTrainNew);
+    //help here
+    //compute the difference in time from now and from firstTrainNew
     var diffTime = moment().diff(moment(firstTrainNew), "minutes");
+    //help here
+    //unix time is in seconds 
+    console.log("diffTime :" + diffTime);
+
+
     var remainder = diffTime % childSnapshot.val().freq;
     var minsAway = childSnapshot.val().freq - remainder;
+
+    //adding the mins aways to the current time and converting to mins 
     var nextArrival = moment().add(minsAway, "minutes");
     nextArrival = moment(nextArrival).format("hh:mm");
     console.log("mins away :" + minsAway);
@@ -63,8 +75,8 @@ database.ref().on("child_added", function (childSnapshot) {
     row.append("<td>" + childSnapshot.val().trainName + "</td>");
     row.append("<td>" + childSnapshot.val().destination + "</td>");
     row.append("<td>" + childSnapshot.val().freq + "</td>");
-    row.append("<td>" + childSnapshot.val().nextArrival + "</td>");
-    row.append("<td>" + childSnapshot.val().minsAway + "</td>");
+    row.append("<td>" + nextArrival + "</td>");
+    row.append("<td>" + minsAway + "</td>");
     $("#record").append(row);
 
 }, function (errorObject) {
